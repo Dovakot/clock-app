@@ -1,0 +1,33 @@
+:root {
+  --back-color: #000000;
+
+  --overlay-color: rgba(0, 0, 0, 0.6);
+
+  --primary-color: rgba(112, 147, 108, 0.64);
+  --secondary-color: #cdcdcd;
+
+  --clock-hr-color: rgba(255, 255, 266, 0.4);
+
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #ffffff;
+  --tertiary-text-color: #bcb9b5;
+
+  --clock-card-color: #000000;
+  --clock-card-text-color: #ffffff;
+
+  --clock-back-color: #c6c6c6;
+  --clock-card-color: #000000;
+  --clock-card-text-color: #ffffff;
+  --clock-card-default-color: #000000;
+  --clock-dial-color: #9f9f9f;
+  --clock-hand-color: #000000;
+  --clock-second-hand-color: #c80f0a;
+}
+
+.page-header__logo {
+  filter: invert(1);
+}
+
+.nav-setting__button {
+  filter: contrast(0);
+}
