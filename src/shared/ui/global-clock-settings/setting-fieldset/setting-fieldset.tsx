@@ -1,23 +1,66 @@
-import React from "react";
+import styled, { css } from "styled-components";
+
+import { Color } from "../../../../app/styles/tokens/colors";
 
 import { FormControl } from "../from-control";
 import { Legend } from "../legend";
+import { FieldType } from "../global-clock-settings";
+
+const StyledFildset = styled.fieldset`
+  border: none;
+  padding: 0;
+  margin: 8px 0;
+
+  @media (min-width: 769px) {
+    display: flex;
+    align-items: center;
+
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+`;
+
+const StyledList = styled.ul<{$type: any}>`
+  ${({ $type }: any) => $type === FieldType.RADIO && css`
+    border: 1px solid ${Color.LIGHT_GRAY_1};
+    overflow: hidden;
+    border-radius: 4px;
+
+    & > li:not(:last-child) {
+      border-bottom: 1px solid ${Color.LIGHT_GRAY_1};
+
+      @media (min-width: 769px) {
+        border-bottom: none;
+        border-right: 1px solid ${Color.LIGHT_GRAY_1};
+      }
+    }
+  `}
+
+  @media (min-width: 769px) {
+    display: flex;
+    align-items: center;
+  }
+`;
 
 const getFormControl = (item: any) => (
-  <FormControl key={item.label} {...item} />
+  <li key={item.label}>
+    <FormControl {...item} />
+  </li>
 );
 
-export const SettingFieldset = ({
+const SettingFieldset = ({
   legend,
   fields,
   classModifier,
   isLegend,
 }: any) => (
-  <fieldset className="nav-setting__fieldset">
+  <StyledFildset>
     {isLegend && <Legend legend={legend} />}
 
-    <ul className={`list-unstyled nav-setting__list nav-setting__list--${classModifier}`}>
+    <StyledList $type={classModifier}>
       {fields.map(getFormControl)}
-    </ul>
-  </fieldset>
+    </StyledList>
+  </StyledFildset>
 );
+
+export { SettingFieldset };

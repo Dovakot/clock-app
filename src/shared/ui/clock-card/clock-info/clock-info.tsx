@@ -1,7 +1,8 @@
-import React from "react";
+import styled from "styled-components";
 
 import { IconInfo, InfoType } from "../../icon-info";
-import { IconNames } from "../../icon-svg";
+import { IconName } from "../../../../app/styles/tokens/icons";
+import { Typography, TypographyVariant } from "../../typography";
 
 const getFormattedDate = (strDate: Date) => {
   const date = new Date(strDate);
@@ -11,9 +12,37 @@ const getFormattedDate = (strDate: Date) => {
   };
 
   return date.toLocaleDateString('ru-RU', options);
-}
+};
 
-export const ClockInfo = ({
+const StyledList = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+`;
+
+const StyledTitle = styled(Typography).attrs({ as: 'h3' })`
+  margin: 0 0 12px;
+  font-weight: 400;
+`;
+
+const StyledCity = styled(Typography).attrs({
+  as: 'span',
+  $variant: TypographyVariant.TITLE_LG,
+})`
+  display: block;
+  margin: 0 0 8px;
+`;
+
+const StyledCountry = styled(Typography).attrs({ as: 'span' })`
+  text-transform: uppercase;
+`;
+
+const ClockInfo = ({
   city,
   country,
   dateSunRise,
@@ -22,44 +51,43 @@ export const ClockInfo = ({
   weather,
 }: any) => (
   <>
-    <ul className="list-unstyled card-clock__informer">
+    <StyledList>
       <li>
         <IconInfo
-          id={IconNames.SUNRISE}
+          iconName={IconName.SUNRISE}
           name="Восход"
           type={InfoType.TIME}
           date={dateSunRise}
-          className="icon-info__image"
         />
       </li>
       <li>
         <IconInfo
-          id={IconNames.SUNSET}
+          iconName={IconName.SUNSET}
           name="Закат"
           type={InfoType.TIME}
           date={dateSunSet}
-          className="icon-info__image"
         />
       </li>
-    </ul>
+    </StyledList>
 
-    <h3 className="card-clock__title clock-title">
-      <span className="clock-title__city">{city}</span>
-      <span className="clock-title__country">{country}</span>
-    </h3>
+    <StyledTitle>
+      <StyledCity>{city}</StyledCity>
+      <StyledCountry>{country}</StyledCountry>
+    </StyledTitle>
 
-    <ul className="list-unstyled card-clock__informer">
+    <StyledList>
       <li>
         <time dateTime={currentDate}>{getFormattedDate(currentDate)}</time>
       </li>
       <li>
         <IconInfo
-          id={IconNames.WEATHER}
+          iconName={IconName.WEATHER}
           name={weather}
           type={InfoType.SPAN}
-          className="icon-info__image"
         />
       </li>
-    </ul>
+    </StyledList>
   </>
 );
+
+export { ClockInfo };

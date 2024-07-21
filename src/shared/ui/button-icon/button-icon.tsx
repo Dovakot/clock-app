@@ -1,19 +1,33 @@
-import React from "react";
+import styled from "styled-components";
+
+import { ButtonMixin } from "../../../app/styles/helpers/button";
 
 import { IconSvg } from "../icon-svg";
 
-export const ButtonIcon = ({
-  iconId,
+const StyledButton = styled.button`
+  ${ButtonMixin}
+
+  padding: 6px;
+  background: transparent;
+`;
+
+const ButtonIcon = ({
+  className,
+  buttonType,
+  iconName,
+  iconColor,
   ariaLabel,
 }: any) => (
-  <button
-    className="button button--icon"
-    type="button"
+  <StyledButton
+    className={className}
+    type={buttonType}
     aria-label={ariaLabel}
   >
     <IconSvg
-      id={iconId}
-      ariaLabel={ariaLabel}
+      name={iconName}
+      color={iconColor}
     />
-  </button>
+  </StyledButton>
 );
+
+export { ButtonIcon };

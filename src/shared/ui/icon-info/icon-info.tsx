@@ -1,8 +1,10 @@
 import React from "react";
 
 import { IconSvg } from "../icon-svg";
+import { Color } from "../../../app/styles/tokens/colors";
+import styled from "styled-components";
 
-export enum InfoType {
+enum InfoType {
   SPAN = 'span',
   TIME = 'time',
 }
@@ -27,16 +29,27 @@ const getLabel = (
   }
 };
 
-export const IconInfo = ({
-  id,
+const StyledIcon = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+`;
+
+const IconInfo = ({
+  iconName,
   name,
   type,
   date,
-  className,
 }: any) => (
-  <span className="icon-info">
-    <IconSvg id={id} className={className} />
+  <StyledIcon>
+    <IconSvg
+      name={iconName}
+      color={Color.BLACK}
+    />
 
     {getLabel(type, name, date)}
-  </span>
+  </StyledIcon>
 );
+
+export { InfoType, IconInfo };

@@ -1,1 +1,1 @@
-export { IconSvg, IconNames } from "./icon-svg";
+export { IconSvg } from "./icon-svg";

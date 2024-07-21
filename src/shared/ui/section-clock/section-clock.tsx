@@ -1,7 +1,7 @@
-import React from "react";
+import styled from "styled-components";
 
 import { ClockCard } from "../clock-card";
-import { ClockCardEmpty } from "../clock-card/clock-card-empty";
+import { VisuallyHiddenMixin } from "../../../app/styles/helpers/visually-hidden";
 
 const clocksMock: any = [
   {
@@ -24,20 +24,34 @@ const clocksMock: any = [
   },
 ];
 
-export const SectionClock = () => (
-  <section className="clocks">
-    <h2 className="visually-hidden">Список часов</h2>
+const StyledTitle = styled.h2`
+  ${VisuallyHiddenMixin}
+`
+const StyledList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
-    <ul className="list-unstyled clocks__list">
-      <li className="clocks__item">
+  li {
+    display: flex;
+  }
+`;
+
+const SectionClock = () => (
+  <section>
+    <StyledTitle>Список часов</StyledTitle>
+
+    <StyledList>
+      <li>
         <ClockCard card={clocksMock[0]} />
       </li>
-      <li className="clocks__item">
+      <li>
         <ClockCard card={clocksMock[1]} />
       </li>
-      <li className="clocks__item">
-        <ClockCardEmpty />
+      <li>
+        <ClockCard />
       </li>
-    </ul>
+    </StyledList>
   </section>
 );
+
+export { SectionClock };
