@@ -1,22 +1,57 @@
-import React from "react";
+import styled from "styled-components";
 
+import { Color } from "../../../app/styles/tokens/colors";
+
+import { ContainerMixin } from "../../../app/styles/helpers/container";
 import { Logo } from "../logo";
 import { ButtonClockAdding } from "../section-clock";
 import { GlobalClockSetting } from "../global-clock-settings";
 
-export const Header = () => (
-  <header className="page-header">
-    <div className="container page-header__container">
+const StyledHeader = styled.header`
+  position: relative;
+  background-color: ${Color.WHITE};
+`;
+
+const StyledContainer = styled.div`
+  ${ContainerMixin}
+
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  min-height: 76px;
+
+  @media (min-width: 1961px) {
+    min-height: 110px;
+  }
+}
+`;
+
+const StyledList = styled.ul`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+
+  @media (min-width: 769px) {
+    gap: 40px;
+  }
+`;
+
+const Header = () => (
+  <StyledHeader>
+    <StyledContainer>
       <Logo />
 
-      <ul className="list-unstyled clock-setting">
-        <li className="clock-setting__item">
+      <StyledList>
+        <li>
           <ButtonClockAdding />
         </li>
-        <li className="clock-setting__item">
+        <li>
           <GlobalClockSetting />
         </li>
-      </ul>
-    </div>
-  </header>
+      </StyledList>
+    </StyledContainer>
+  </StyledHeader>
 );
+
+export { Header };

@@ -1,62 +1,70 @@
-import React from "react";
+import styled, { css } from "styled-components";
 
-export enum IconNames {
-  ADD = 'add',
-  SETTING = 'setting',
-  RELOAD = 'reload',
-  SUNRISE = 'sunrise',
-  SUNSET = 'sunset',
-  WEATHER = 'weather',
-  NOTE = 'note',
-  DELETE = 'delete',
-}
+import { Color } from "../../../app/styles/tokens/colors";
+import { IconName } from "../../../app/styles/tokens/icons";
 
-const ICONS_CONFIG: any = {
-  [IconNames.ADD]: {
-    width: 20,
-    height: 20,
-  },
-  [IconNames.SETTING]: {
-    width: 30,
-    height: 27,
-  },
-  [IconNames.RELOAD]: {
-    width: 21,
-    height: 21,
-  },
-  [IconNames.NOTE]: {
-    width: 20,
-    height: 21,
-  },
-  [IconNames.DELETE]: {
-    width: 20,
-    height: 25,
-  },
-  [IconNames.SUNRISE]: {
-    width: 20,
-    height: 20,
-  },
-  [IconNames.SUNSET]: {
-    width: 20,
-    height: 12,
-  },
-  [IconNames.WEATHER]: {
-    width: 30,
-    height: 30,
-  },
+const IconSizeToCSS: any = {
+  [IconName.ADD]: css`
+    width: 20px;
+    height: 20px;
+  `,
+  [IconName.SETTING]: css`
+    width: 30px;
+    height: 27px;
+  `,
+  [IconName.RELOAD]: css`
+    width: 21px;
+    height: 21px;
+  `,
+  [IconName.NOTE]: css`
+    width: 20px;
+    height: 21px;
+  `,
+  [IconName.DELETE]: css`
+    width: 20px;
+    height: 25px;
+  `,
+  [IconName.SUNRISE]: css`
+    width: 20px;
+    height: 20px;
+  `,
+  [IconName.SUNSET]: css`
+    width: 20px;
+    height: 12px;
+  `,
+  [IconName.WEATHER]: css`
+    width: 30px;
+    height: 30px;
+  `,
 };
 
-export const IconSvg = ({
-  id,
+const StyledIcon = styled.svg.attrs(({ color }) => ({
+  color: color ?? Color.WHITE
+}))`
+  ${({ name }: any) => IconSizeToCSS[name]}
+
+  color: ${({ color }) => color};
+`;
+
+const IconSvg = ({
   className,
-}: any) => (
-  <svg
-    className={className}
-    width={ICONS_CONFIG[id].width}
-    height={ICONS_CONFIG[id].height}
-    aria-hidden="true"
-    focusable="false"
-  >
-    <use xlinkHref={`img/sprite.svg#icon-${id}`} />
-  </svg>
-);
+  name,
+  color,
+}: any) => {
+  const xlinkHref = `#icon-${name}`;
+
+  return (
+    <StyledIcon
+      className={className}
+      name={name}
+      color={color}
+      aria-hidden="true"
+      focusable="false"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <use xlinkHref={xlinkHref} />
+    </StyledIcon>
+  );
+};
+
+export { IconSvg };

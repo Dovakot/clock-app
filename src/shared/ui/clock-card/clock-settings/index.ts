@@ -1,1 +1,1 @@
-export { ClockSettings } from "./clock-settings";
+export { ClockSettings, ButtonsClockSetting } from "./clock-settings";

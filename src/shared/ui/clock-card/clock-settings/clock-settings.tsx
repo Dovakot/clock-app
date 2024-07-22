@@ -1,21 +1,39 @@
-import React from "react";
+import styled from "styled-components";
 
 import { ButtonIcon } from "../../button-icon";
-import { IconNames } from "../../icon-svg";
+import { IconName } from "../../../../app/styles/tokens/icons";
 
-export const ClockSettings = () => (
-  <ul className="list-unstyled card-clock__setting">
+const StyledSettings = styled.ul`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+`;
+
+const ClockSettings = ({ className }: any) => (
+  <StyledSettings className={className}>
     <li>
       <ButtonIcon
-        iconId={IconNames.NOTE}
+        buttonType="button"
+        iconName={IconName.NOTE}
         ariaLabel="Добавить заметку"
       />
     </li>
     <li>
       <ButtonIcon
-        iconId={IconNames.DELETE}
+        buttonType="button"
+        iconName={IconName.DELETE}
         ariaLabel="Удалить часы"
       />
     </li>
-  </ul>
+  </StyledSettings>
 );
+
+export { ClockSettings, StyledSettings as ButtonsClockSetting };
